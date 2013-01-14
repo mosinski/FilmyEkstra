@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/modernizr-2.5.3.js")" type="text/javascript"></script>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <div id="title">
+                <img src="http://www.m1l05z.pl/Filmy%20Extra/images/header_top.png" alt="logo" width="500px" />
+            </div>
+            <div id="logindisplay">
+                @if(Request.IsAuthenticated) {
+                }
+                else{
+                   <text> @Html.ActionLink("Rejestracja","Register","Account") |</text>
+                }
+                @Html.Partial("_LogOnPartial")
+            </div>
+            <nav>
+                <ul id="menu">
+                    @if(Request.IsAuthenticated) {
+                    <li>@Html.ActionLink("Home", "Index", "Movies")</li>
+                    }
+                    else{
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    }
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                </ul>
+            </nav>
+        </header>
+        <section id="main">
+            @RenderBody()
+        </section>
+        <footer>
+        </footer>
+    </div>
+</body>
+</html>

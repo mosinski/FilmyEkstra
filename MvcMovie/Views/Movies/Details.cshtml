@@ -1,0 +1,42 @@
+﻿@model MvcMovie.Models.Movie
+
+@{
+    ViewBag.Title = "Details";
+}
+<style>
+#plakat_show:hover{
+    border: 1px solid rgb(204, 204, 204);
+    background: none repeat scroll 0% 0% rgb(221, 221, 221);
+}
+</style>
+
+<fieldset>
+    <legend>Film</legend>
+
+    <div class="display-field" id="tytul_show" style="font-size:60px;font-weight:600;display:inline-block;">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+    <div style="display:inline-block">
+    <div class="display-label">Premiera</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReleaseDate)
+    </div>
+    </div>
+    <hr style="width:80%; float:left;" />
+    <div class="plakat_show">
+        <img src="@Model.fotourl" width="250px" height="300px" style="position:fixed;right:120px;top:150px; border:1px solid rgb(229, 229, 229);padding: 4px;transition: all 0.8s ease 0s;" id="plakat_show" />
+    </div>
+    <div class="display-label">Genre</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Genre)
+    </div>
+
+    <div class="display-label">Price</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

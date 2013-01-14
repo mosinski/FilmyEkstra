@@ -1,0 +1,66 @@
+﻿@model IEnumerable<MvcMovie.Models.Movie>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @if(Request.IsAuthenticated) {
+    @Html.ActionLink("Create New", "Create")
+    }
+
+    @using (Html.BeginForm("SearchIndex","Movies",FormMethod.Get)){   
+         <p> Title: @Html.TextBox("SearchString") 
+         <input type="submit" value="Szukaj" /></p>
+        }
+</p>
+<table>
+    <tr>
+        <th>
+            Tytuł
+        </th>
+        <th>
+            Rok Wydania
+        </th>
+        <th>
+            Genre
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Dodał
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReleaseDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Genre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Useradd)
+        </td>
+        <td>
+            @Html.ActionLink("Show", "Details", new { id=item.ID }) 
+            @if(item.Useradd == System.Web.HttpContext.Current.User.Identity.Name) { <text>|
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })</text>
+            }
+        </td>
+    </tr>
+}
+
+</table>
