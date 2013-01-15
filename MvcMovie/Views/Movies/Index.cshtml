@@ -4,63 +4,41 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-<p>
-    @if(Request.IsAuthenticated) {
-    @Html.ActionLink("Create New", "Create")
-    }
+<style>
+.list_film:hover{
+    border: 1px solid rgb(204, 204, 204);
+    background: none repeat scroll 0% 0% rgb(221, 221, 221);
+}
+</style>
 
     @using (Html.BeginForm("SearchIndex","Movies",FormMethod.Get)){   
          <p> Title: @Html.TextBox("SearchString") 
          <input type="submit" value="Szukaj" /></p>
         }
-</p>
-<table>
-    <tr>
-        <th>
-            Tytuł
-        </th>
-        <th>
-            Rok Wydania
-        </th>
-        <th>
-            Genre
-        </th>
-        <th>
-            Price
-        </th>
-        <th>
-            Dodał
-        </th>
-        <th></th>
-    </tr>
 
+<div>
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReleaseDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Genre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Useradd)
-        </td>
-        <td>
+    
+    <div style="display:inline-block; width:178px; height:251px; border:1px solid rgb(229, 229, 229);padding: 4px;transition: all 0.8s ease 0s;" class="list_film">
+        <div style="text-align:center;">
+            @if(item.fotourl == null){
+             <img src="http://4.bp.blogspot.com/-hIirVYTQFRs/TwdWvcq55uI/AAAAAAAACt8/3frSkQULrn4/s1600/film-reel.jpg" width="150" height="200" />
+            }
+            else{
+            <img src="@item.fotourl" width="150" height="200" />
+            }
+        </div>
+        <div style="text-align:center;">
+            @Html.DisplayFor(modelItem => item.Title)  (@Html.DisplayFor(modelItem => item.ReleaseDate))
+
+            <br>
             @Html.ActionLink("Show", "Details", new { id=item.ID }) 
             @if(item.Useradd == System.Web.HttpContext.Current.User.Identity.Name) { <text>|
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ID })</text>
             }
-        </td>
-    </tr>
+        </div>
+    </div>
+  
 }
-
-</table>
+ </div>
