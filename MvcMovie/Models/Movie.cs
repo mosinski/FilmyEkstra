@@ -10,9 +10,9 @@ namespace MvcMovie.Models
     {
         public int ID { get; set; }
         public string Title { get; set; }
-        public string ReleaseDate { get; set; }
+        public int ReleaseDate { get; set; }
         public string Genre { get; set; }
-        public decimal Price { get; set; }
+        public string Opis { get; set; }
         public string Useradd { get; set; }
         public string fotourl { get; set; }
     }

@@ -4,7 +4,7 @@ to use a different color start by replacing all instances of
 #5c87b2 with your new color.
 ----------------------------------------------------------*/
 body {
-    background-color: #5c87b2;
+    background: url("~/Content/themes/base/images/top-back.gif") repeat-x scroll 0% 0% rgb(7, 83, 108);
     font-size: .85em;
     font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
     margin: 0;
@@ -102,7 +102,7 @@ header h1, #header h1 {
 
 #main {
     padding: 30px 30px 15px 30px;
-    background-color: #fff;
+    background: rgb(11, 100, 131);
     -webkit-border-radius: 4px 0 0 0;
     -moz-border-radius: 4px 0 0 0;
     border-radius: 4px 0 0 0;
@@ -110,7 +110,7 @@ header h1, #header h1 {
 
 footer, 
 #footer {
-    background-color: #fff;
+    background: url("http://www.movieforum.pl/styles/xandblue/theme/images/menu-back.gif") repeat-x scroll 0% 0% transparent;
     color: #999;
     padding: 10px 0;
     text-align: center;
@@ -184,6 +184,7 @@ fieldset {
 legend {
     font-size: 1.2em;
     font-weight: bold;
+    color: rgb(252, 231, 0);
 }
 
 textarea {
@@ -322,3 +323,36 @@ div#title {
 .tri-state {
     width: 6em;
 }
+.list_film {
+    border: 1px solid rgb(10, 118, 154);
+    background: url("./images/top-back.gif") repeat-x scroll 0% 0% rgb(7, 83, 108);
+    display:inline-block; 
+    width:178px; 
+    height:251px; 
+    padding: 4px;
+    transition: all 0.8s ease 0s;
+}
+.list_film:hover{
+    border: 1px solid rgb(204, 204, 204);
+    background: none repeat scroll 0% 0% rgb(221, 221, 221);
+}
+#SearchString {
+        font-size:x-large;
+        border: 1px solid rgb(10, 118, 154);
+        background: url("./images/top-back.gif") repeat-x scroll 0% 0% rgb(7, 83, 108);
+    }
+.head_background {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 180px;
+    Background: url(http://www.movieforum.pl/styles/xandblue/theme/images/top-back.gif);
+    z-index:-999;
+}
+.napis {
+    color: white;
+}
+.napis:hover{
+    color: black;
+    }

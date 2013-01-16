@@ -1,7 +1,7 @@
 ﻿@model MvcMovie.Models.Movie
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.Title;
 }
 <style>
 #plakat_show:hover{
@@ -13,27 +13,32 @@
 <fieldset>
     <legend>Film</legend>
 
-    <div class="display-field" id="tytul_show" style="font-size:60px;font-family: 'Trade Winds', cursive;display:inline-block;">
+    <div class="display-field" id="tytul_show" style="font-size:60px;font-family: 'Trade Winds', cursive;display:inline-block;color: rgb(32, 207, 255);">
         @Html.DisplayFor(model => model.Title)
     </div>
     <div style="display:inline-block">
     <div class="display-label">Premiera</div>
-    <div class="display-field">
+    <div class="display-field" style="color: rgb(32, 207, 255);">
         @Html.DisplayFor(model => model.ReleaseDate)
     </div>
     </div>
     <hr style="width:80%; float:left;" />
     <div class="plakat_show">
-        <img src="@Model.fotourl" width="250px" height="300px" style="position:fixed;right:120px;top:150px; border:1px solid rgb(229, 229, 229);padding: 4px;transition: all 0.8s ease 0s;" id="plakat_show" />
+        <img src="@Model.fotourl" width="250px" height="300px" style="position:absolute;right:120px;top:150px; border:0px solid rgb(229, 229, 229);padding: 4px;transition: all 0.8s ease 0s;" id="plakat_show" />
     </div>
     <div class="display-label">Genre</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Genre)
     </div>
 
-    <div class="display-label">Price</div>
+    <div class="display-label">Opis</div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Price)
+        @Html.DisplayFor(model => model.Opis)
+    </div>
+
+    <div class="display-label">Dodał</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Useradd)
     </div>
 </fieldset>
 <p>
