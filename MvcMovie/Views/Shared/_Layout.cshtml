@@ -18,6 +18,7 @@
             <div id="title">
                 <img src="@Url.Content("~/Content/themes/base/images/logo.png")" alt="logo" width="485px" style="border-radius: 4px 4px 4px 4px;margin-top:-5px;" />
             </div>
+            <div id="notice"></div>
             <div id="logindisplay">
                 @if(Request.IsAuthenticated) {
                 }
@@ -29,7 +30,7 @@
             <nav>
                 <ul id="menu">
                     @if(Request.IsAuthenticated) {
-                    <li>@Html.ActionLink("Create New", "Create")</li>
+                    <li>@Html.ActionLink("Create New", "Create","Movies")</li>
                     <li>@Html.ActionLink("Home", "Index", "Movies")</li>
                     }
                     else{

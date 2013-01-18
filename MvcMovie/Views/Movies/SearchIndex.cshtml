@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<MvcMovie.Models.Movie>
-
+@if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated){}
+else {Response.Redirect("/Account/LogOn"); }
 @{
     ViewBag.Title = "Filmy";
 }
@@ -7,35 +8,50 @@
 <script>
     jQuery(function ($) {
         $("#SearchString").Watermark("Szukaj Filmu");
+        $(".list_film").hover(
+        function () {
+            $(".przyciski").fadeIn(500);
+        },
+         function () {
+             $(".przyciski").fadeOut(500);
+         });
     });
 </script>
 
-    @using (Html.BeginForm("SearchIndex","Movies",FormMethod.Get)){   
+    @using (Html.BeginForm("SearchIndex", "Movies", FormMethod.Get))
+    {   
          <p>@Html.TextBox("SearchString")</p>
-        }
+    }
 
 <div>
 @foreach (var item in Model)
 {
-    <a href="Movies/Details/@item.ID" style="text-decoration:none;">
+    <a href="Details/@item.ID" style="text-decoration:none;" class="list_link">
     <div class="list_film">
+         @if(item.Useradd == System.Web.HttpContext.Current.User.Identity.Name) {
+            <div class="przyciski">
+            <div style="display:inline-block;">
+           @using (Html.BeginForm("Delete", "Movies", new { id = item.ID }))
+           {
+           <input type="image" value="Delete" src="https://whyweprotest.net/community/styles/dark/ratings/delete_icon&16.png"/>
+           } 
+            </div>
+           <div style="display:inline-block;">
+            <link rel="first"  href="Edit/@item.ID" style="background-image:url(http://pic.dhe.ibm.com/infocenter/worlodep/v3r0m0/topic/com.ibm.worlodep.doc/cloudcommon/edit-icon.gif);display:block;width:16px;height:16px;"/>
+            </div>
+            </div> 
+            }
         <div style="text-align:center;">
-            @if (item.fotourl == null){
-             <img src="http://4.bp.blogspot.com/-hIirVYTQFRs/TwdWvcq55uI/AAAAAAAACt8/3frSkQULrn4/s1600/film-reel.jpg" width="150" height="200" style="border: 1px solid rgb(87, 87, 87);"/>
+            @if (item.fotourl == null)
+            {
+             <img src="http://4.bp.blogspot.com/-hIirVYTQFRs/TwdWvcq55uI/AAAAAAAACt8/3frSkQULrn4/s1600/film-reel.jpg" width="150px" height="200px" style="border: 1px solid rgb(87, 87, 87);"/>
             }
             else{
-            <img src="@item.fotourl" width="150" height="200" />
+             <img src="@item.fotourl" width="150px" height="200px" style="border: 1px solid rgb(87, 87, 87);"/>
             }
         </div>
         <div style="text-align:center;">
-            @Html.DisplayFor(modelItem => item.Title)  (@Html.DisplayFor(modelItem => item.ReleaseDate))
-
-            <br>
-            @Html.ActionLink("Show", "Details", new { id=item.ID }) 
-            @if(item.Useradd == System.Web.HttpContext.Current.User.Identity.Name) { <text>|
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })</text>
-            }
+            <div class="napis">@Html.DisplayFor(modelItem => item.Title)  (@Html.DisplayFor(modelItem => item.ReleaseDate))</div>
         </div>
     </div>
   </a>

@@ -26,8 +26,15 @@ namespace MvcMovie.Controllers
 
         public ViewResult Details(int id)
         {
-            Movie movie = db.Movies.Find(id);
-            return View(movie);
+            if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                Movie movie = db.Movies.Find(id);
+                return View(movie);
+            }
+            else
+            {
+                return View();
+            }
         }
 
         //
@@ -35,7 +42,14 @@ namespace MvcMovie.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("LogOn", "Account");
+            }
         } 
 
         //
@@ -44,21 +58,28 @@ namespace MvcMovie.Controllers
         [HttpPost]
         public ActionResult Create(Movie movie)
         {
-            if (ModelState.IsValid)
+            if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
             {
-                //movie.Useradd.Insert(1,System.Web.HttpContext.Current.User.Identity.Name);
-                movie.Useradd = System.Web.HttpContext.Current.User.Identity.Name;
-                db.Movies.Add(movie);
-                db.SaveChanges();
-                return RedirectToAction("Index");  
+                if (ModelState.IsValid)
+                {
+                    movie.Useradd = System.Web.HttpContext.Current.User.Identity.Name;
+                    db.Movies.Add(movie);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                return View(movie);
+            }
+            else
+            {
+                return RedirectToAction("LogOn", "Account");
             }
 
-            return View(movie);
         }
         
         //
         // GET: /Movies/Edit/5
- 
+
         public ActionResult Edit(int id)
         {
             Movie movie = db.Movies.Find(id);
@@ -76,7 +97,7 @@ namespace MvcMovie.Controllers
                 movie.Useradd = System.Web.HttpContext.Current.User.Identity.Name;
                 db.Entry(movie).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Movies");
             }
             return View(movie);
         }
@@ -95,11 +116,19 @@ namespace MvcMovie.Controllers
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
-        {            
+        {
             Movie movie = db.Movies.Find(id);
-            db.Movies.Remove(movie);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (System.Web.HttpContext.Current.User.Identity.Name == movie.Useradd)
+            {
+                db.Movies.Remove(movie);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Movies");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Movies");
+            }
+
         }
 
         protected override void Dispose(bool disposing)

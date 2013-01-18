@@ -17,9 +17,7 @@ a:link {
     text-decoration: underline;
 }
 
-a:visited {
-    color: #505abc;
-}
+
 
 a:hover {
     color: #1d60ff;
@@ -179,6 +177,7 @@ fieldset {
     border: 1px solid #ddd;
     padding: 0 1.4em 1.4em 1.4em;
     margin: 0 0 1.5em 0;
+    color: rgb(32, 207, 255);
 }
 
 legend {
@@ -189,6 +188,7 @@ legend {
 
 textarea {
     min-height: 75px;
+    background: rgb(7, 83, 108);
 }
 
 input[type="text"], 
@@ -198,6 +198,8 @@ input[type="password"] {
     font-size: 1.2em;
     color: #444;
     width: 200px;
+    background: rgb(7, 83, 108);
+    color:Lightgray;
 }
 
 select {
@@ -205,6 +207,8 @@ select {
     padding: 2px;
     font-size: 1.2em;
     color: #444;
+    background:rgb(7, 83, 108);
+    color:lightblue;
 }
 
 input[type="submit"] {
@@ -260,6 +264,15 @@ div#title {
     margin: 10px;
     color: White;
 }
+#notice {
+    font-size: 1.1em;
+    display: block;
+    position:absolute;
+    top:50px;
+    left:500px;
+    margin: 2px;
+    color: White;
+}
 
 #logindisplay a:link {
     color: white;
@@ -305,6 +318,7 @@ div#title {
 .display-label, 
 .editor-label {
     margin: 1em 0 0 0;
+    color: rgb(74, 223, 1);
 }
 
 .display-field, 
@@ -325,12 +339,13 @@ div#title {
 }
 .list_film {
     border: 1px solid rgb(10, 118, 154);
-    background: url("./images/top-back.gif") repeat-x scroll 0% 0% rgb(7, 83, 108);
+    background: rgb(7, 83, 108);
     display:inline-block; 
     width:178px; 
     height:251px; 
     padding: 4px;
     transition: all 0.8s ease 0s;
+    cursor:pointer;
 }
 .list_film:hover{
     border: 1px solid rgb(204, 204, 204);
@@ -339,7 +354,7 @@ div#title {
 #SearchString {
         font-size:x-large;
         border: 1px solid rgb(10, 118, 154);
-        background: url("./images/top-back.gif") repeat-x scroll 0% 0% rgb(7, 83, 108);
+        background: rgb(7, 83, 108);
     }
 .head_background {
     position: absolute;
@@ -351,8 +366,29 @@ div#title {
     z-index:-999;
 }
 .napis {
-    color: white;
-}
-.napis:hover{
     color: black;
-    }
+    font-weight:bold;
+}
+#Opis {
+    resize:none;
+    width:80%;
+    height:350px;
+}
+.przyciski {
+    text-align:right;
+    display:none;
+    position:absolute;
+    z-index:9999;
+}
+.przycisk_edit {
+    background-image:url(http://cdn1.iconfinder.com/data/icons/picol/icons/edit_32.png);
+    display:block;
+    width:16px;
+    height:16px;
+    background-clip: border-box;
+    background-repeat: no-repeat !important;
+    background-position: 0% 0% !important;
+    background-origin: padding-box !important;
+    background-attachment: fixed !important;
+    background-size: 16px !important;
+}

@@ -1,10 +1,10 @@
 ﻿@model MvcMovie.Models.Movie
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Dodaj Film";
 }
 
-<h2>Create</h2>
+<h2>Dodaj Film</h2>
 
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
@@ -12,37 +12,46 @@
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
     <fieldset>
-        <legend>Movie</legend>
-
+        <legend>Film</legend>
+        <div style="display:inline-block" id="show_title">
         <div class="editor-label">
-            @Html.LabelFor(model => model.Title)
+            Tytuł
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Title)
             @Html.ValidationMessageFor(model => model.Title)
         </div>
-
+        </div>
+        <div style="display:inline-block">
         <div class="editor-label">
-            @Html.LabelFor(model => model.ReleaseDate)
+            Data Premiery
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.ReleaseDate)
             @Html.ValidationMessageFor(model => model.ReleaseDate)
         </div>
-
+        </div>
+        <div style="display:inline-block">
         <div class="editor-label">
-            @Html.LabelFor(model => model.Genre)
+            Gatunek
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Genre)
+            <select name="Genre" id="Genre">
+            <option>Akcja</option>
+            <option>Horror</option>
+            <option>Thriller</option>
+            <option>Dramat</option>
+            <option>Komedia</option>
+            <option>Science Fiction</option>   
+            </select>
             @Html.ValidationMessageFor(model => model.Genre)
         </div>
-
+        </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.Opis)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Opis)
+            @Html.TextAreaFor(model => model.Opis)
             @Html.ValidationMessageFor(model => model.Opis)
         </div>
 
@@ -58,7 +67,7 @@
         </div>
 
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Dodaj Film" />
         </p>
     </fieldset>
 }
